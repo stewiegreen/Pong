@@ -1,4 +1,5 @@
 import turtle
+import random
 
 window = turtle.Screen()
 window.bgcolor("black")
@@ -28,7 +29,7 @@ right_paddle.shapesize(1.5, 5)
 right_paddle.setx(400)
 right_paddle.sety(0)
 right_paddle.color("white")
-print(right_paddle.position())
+
 
 left_paddle = turtle.Turtle()
 left_paddle.right(90)
@@ -37,7 +38,6 @@ left_paddle.shapesize(1.5, 5)
 left_paddle.setx(-400)
 left_paddle.sety(0)
 left_paddle.color("white")
-print(left_paddle.position())
 
 
 def upLeftPaddle():
@@ -60,15 +60,26 @@ def upRightPaddle():
     right_paddle.forward(-40)
 
 
-turtle.onkey(upLeftPaddle, 'Up')
-turtle.onkey(downLeftPaddle, 'Down')
-
-turtle.onkey(upRightPaddle, 'w')
-turtle.onkey(downRightPaddle, 'x')
-
 turtle.listen()
+turtle.onkeypress(upLeftPaddle, 'w')
+turtle.onkeypress(downLeftPaddle, 'x')
+turtle.onkeypress(upRightPaddle, 'Up')
+turtle.onkeypress(downRightPaddle, 'Down')
 
-turtle.done()    # hold the screen
+
+def main():
+    while True:
+        window.update()
+        ball.penup()
+        ball.forward(5)
+        if ball.pos() == right_paddle.pos():
+
+            turtle.done()
+
+
+main()
+
+# hold the screen
 
 
 # onscreen function to send coordinate
