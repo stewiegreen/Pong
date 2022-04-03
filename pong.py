@@ -78,6 +78,7 @@ turtle.onkeypress(downLeftPaddle, 'x')
 turtle.onkeypress(upRightPaddle, 'Up')
 turtle.onkeypress(downRightPaddle, 'Down')
 
+
 tess = turtle.Turtle()
 
 
@@ -91,13 +92,19 @@ turtle.speed(10)  # set the speed"""
 
 
 def main():
+
     left_paddle_score = 0
     right_paddle_score = 0
+    score = turtle.Turtle()
+    score.penup()
+    score.goto(0, 260)
+    score.color("white")
+    score.write(f"Left: {left_paddle_score} Right: {right_paddle_score}",
+                align='center', font=("Verdana", 45, "normal"))
+
     while True:
 
         window.update()
-        turtle.write(f"Left: {left_paddle_score} Right: {right_paddle_score}",
-                     align='center', font=("Verdana", 60, "normal"))
         ball.penup()
         ball.setx(ball.xcor() + ball.move_x)
         ball.sety(ball.ycor() + ball.move_y)
@@ -120,10 +127,19 @@ def main():
         if ball.xcor() > 430:
             ball.goto(0, 0)
             left_paddle_score += 1
+            score.clear()
+            score.write(f"Left: {left_paddle_score} Right: {right_paddle_score}",
+                        align='center', font=("Verdana", 45, "normal"))
 
         if ball.xcor() < -440:
             ball.goto(0, 0)
             right_paddle_score += 1
+            score.clear()
+            score.write(f"Left: {left_paddle_score} Right: {right_paddle_score}",
+                        align='center', font=("Verdana", 45, "normal"))
+
+        if left_paddle_score == 5 or right_paddle_score == 5:
+            break
 
     turtle.done()
 
